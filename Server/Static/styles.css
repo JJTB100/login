@@ -1,0 +1,28 @@
+﻿
+body {
+    background-color: #3c3c3c;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+#title{
+    font-size: 5em;
+    margin: 0.3em;
+    text-align: center;
+}
+#form{
+    border:3px solid blue;
+    border-radius: 25px;
+    /*padding: 5em;*/
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+.buttons{
+    padding: 1em;
+}
+#loginButton{
+
+}
+.inputs{
+    margin: 2em;
+}
