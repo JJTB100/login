@@ -10,6 +10,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to JJTB100's server");
         }
     }
 }
