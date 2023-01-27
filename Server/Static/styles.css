@@ -1,28 +1,58 @@
-﻿
-body {
+﻿body {
     background-color: #3c3c3c;
     color: white;
     font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
 }
 #title{
     font-size: 5em;
     margin: 0.3em;
     text-align: center;
 }
-#form{
-    border:3px solid blue;
+#form {
+    border: 6px solid #0165b7;
     border-radius: 25px;
     /*padding: 5em;*/
     margin: auto;
     width: 80%;
     text-align: center;
+    padding: 1em;
+    transition: 0.3s ease;
 }
+    #form:hover {
+        
+    }
 .buttons{
     padding: 1em;
 }
-#loginButton{
-
+#loginButton {
+    border-radius: 10%;
+    border: none;
+    font-size: 1em;
+    transition: all 300ms;
+    background-color: #018cff;
+    color: white;
 }
+    #loginButton:hover {
+        background-color: #013b6b;
+        cursor: pointer;
+    }
 .inputs{
     margin: 2em;
+}
+.inputboxes{
+    padding:0.7em;
+    color: inherit;
+    font-family: inherit;
+    font-size:inherit;
+    background-color: #002f56;
+    transition: 0.3s;
+    border: none;
+    outline: none;
+    margin-left: 7%
+
+}
+.inputboxes:focus{
+    background-color: #013b6b;
+
 }
