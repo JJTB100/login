@@ -14,7 +14,7 @@
     <div id="title">Login to RiverSafe</div>
     
     <div id="form">
-        <img src="RiverSafeLogo.png" id="logo" />
+        <img src="RiverSafeLogo.png" id="logo" onclick="logoClick()"/>
         <div id="usernameInput" class="inputs">
             <label for="username">
                 Username:
@@ -27,8 +27,14 @@
                 <input type="password" id="password" name="password" class="inputboxes" />
             </label>
         </div>
+        <div id="newPasswordInput" class="inputs">
+            <label for="newPassword">
+                Repeat Password:
+                <input type="password" id="newPassword" name="newPassword" class="inputboxes" />
+            </label>
+        </div>
         <div id="hints">
-            Welcome to RiverSafe
+            
         </div>
         <button onclick="login();" id="loginButton" class="buttons">Login</button>
         <button onclick="reset();" id="passwordResetButton" class="buttons">Forgot Password</button>

@@ -1,17 +1,25 @@
-﻿body {
-    background-color: #3c3c3c;
+﻿:root {
+    --main-color: #509dae;
+    --main-bg-color: #3c3c3c;
+    --input-box-color: #575757;
+    --button-hover-color: #1a4849;
+}
+body {
+    background-color: var(--main-bg-color);
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
 }
-#title{
-    font-size: 5em;
+#title {
+    font-size: 3em;
     margin: 0.3em;
     text-align: center;
+    text-shadow: 0px 0px 10px var(--main-color);
 }
 #form {
-    border: 6px solid #0165b7;
-    border-radius: 25px;
+    position: relative;
+    border: 4px solid var(--main-color);
+    border-radius: 15px;
     /*padding: 5em;*/
     margin: auto;
     width: 80%;
@@ -24,15 +32,15 @@
     }
 .buttons {
     padding: 1em;
-    border-radius: 15px;
+    border-radius: 10px;
     border: none;
     font-size: 1em;
     transition: all 300ms;
-    background-color: #018cff;
+    background-color: var(--main-color);
     color: white;
 }
     .buttons:hover {
-        background-color: #0165b7;
+        background-color: var(--button-hover-color);
         cursor: pointer;
     }
 .inputs {
@@ -41,26 +49,32 @@
 }
 #logo {
     width: 15%;
-    position: relative;
-    right: 0;
-    top: 0;
+    position: absolute;
+    right: 0%;
+    top: 0%;
 }
 #hints{
     margin: 1em;
 }
+#newPasswordInput{
+    display: none;
+    margin-left: 1%;
+}
+
 .inputboxes{
     
     padding:0.7em;
     color: inherit;
     font-family: inherit;
     font-size:inherit;
-    background-color: #575757;
+    background-color: var(--input-box-color);
     transition: 0.3s;
-    border: none;
+    border: 3px solid var(--input-box-color);
     outline: none;
-    margin-left: 7%
+    margin-left: 7%;
+    border-radius: 5px;
 
 }
     .inputboxes:focus {
-        background-color: #018cff;
+        border: 3px solid var(--main-color)  ;
     }
