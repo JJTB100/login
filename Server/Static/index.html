@@ -10,22 +10,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="title">Login Page</div>
+
+    <div id="title">Login to RiverSafe</div>
     
     <div id="form">
+        <img src="RiverSafeLogo.png" id="logo" />
         <div id="usernameInput" class="inputs">
             <label for="username">
                 Username:
-                <input type="text" name="username" class="inputboxes"/>
+                <input type="text" id="username" name="username" class="inputboxes" />
             </label>
         </div>
         <div id="passwordInput" class="inputs">
             <label for="password">
                 Password:
-                <input type="password" name="password" class="inputboxes"/>
+                <input type="password" id="password" name="password" class="inputboxes" />
             </label>
         </div>
-        <button id="loginButton" class="buttons">Login</button>
+        <div id="hints">
+            Welcome to RiverSafe
+        </div>
+        <button onclick="login();" id="loginButton" class="buttons">Login</button>
+        <button onclick="reset();" id="passwordResetButton" class="buttons">Forgot Password</button>
+        <button onclick="create();" id="createAccountButton" class="buttons">Create Account</button>
     </div>
+    <script src="lib.js" defer></script>
 </body>
 </html>
