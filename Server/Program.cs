@@ -40,12 +40,14 @@ namespace Server
                 {
                     case "/":
                         //research
+                        response.ContentType = "text/html";
                         buffer = File.ReadAllBytes("../../Static/index.html");
                         break;
                     default:
                         string path = $"../../Static{request.RawUrl}";
                         if (File.Exists(path))
                         {
+                            
                             buffer = File.ReadAllBytes(path);
                         }
                         else
