@@ -1,4 +1,5 @@
 const eHints = document.getElementById("hints");
+const eForm = document.getElementById("form");
 var logoClicks = 0;
 function logoClick() {
     logoClicks++;
@@ -76,6 +77,7 @@ function login() {
         lengthCheck(username, 3, 10, "Please enter a username between 3 and 10 characters")
         lengthCheck(password, 5, 20, "Please enter a password between 5 and 20 characters")
         eHints.innerText = "Attempting Login...";
+        eForm.submit();
     }
     catch (e) {
         eHints.innerText = e;

@@ -13,7 +13,7 @@
 
     <div id="title">Login to RiverSafe</div>
     
-    <div id="form">
+    <form id="form" method="post">
         <img src="RiverSafeLogo.png" id="logo" onclick="logoClick()"/>
         <div id="usernameInput" class="inputs">
             <label for="username">
@@ -36,10 +36,10 @@
         <div id="hints">
             
         </div>
-        <button onclick="login();" id="loginButton" class="buttons">Login</button>
-        <button onclick="reset();" id="passwordResetButton" class="buttons">Forgot Password</button>
-        <button onclick="create();" id="createAccountButton" class="buttons">Create Account</button>
-    </div>
+        <input type="button" onclick="login();" id="loginButton" class="buttons"value="Login"/>
+        <input type="button" onclick="reset();" id="passwordResetButton" class="buttons" value="Forgot Password"/>
+        <input type="button" onclick="create();" id="createAccountButton" class="buttons" value="Create Account"/>
+    </form>
     <script src="lib.js" defer></script>
 </body>
 </html>
