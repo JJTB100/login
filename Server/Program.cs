@@ -9,102 +9,101 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to JJTB100's server");
+            // https://learn.microsoft.com/en-us/dotnet/api/system.net.httplistener?view=net-7.0 
+            Console.WriteLine("Welcome to the login server");
 
-            //create a http server that listens on port 80
-
+            // create a HTTP server that listens on port 80
             const int port = 8080;
+            string prefix = $"http://localhost:{port}/";
 
-            string prefix = ($"http://localhost:{port}/");
-
+            Console.WriteLine($"Listening on {prefix}");
             HttpListener server = new HttpListener();
             server.Prefixes.Add(prefix);
-            
-            server.Start();
-            Console.WriteLine("Listening...");
-            int hitcount = 0;
 
-            while (true)
+            server.Start();
+
+            bool running = true;
+ 
+            while(running)
             {
                 HttpListenerContext context = server.GetContext();
                 HttpListenerRequest request = context.Request;
                 HttpListenerResponse response = context.Response;
-                
-                
-                
 
-                Console.WriteLine($"{request.HttpMethod} Request: '{request.RawUrl}'");
-                string html = "";
-                byte[] buffer = Encoding.UTF8.GetBytes("");
+
+
+                Console.WriteLine($"{request.HttpMethod} Request '{request.RawUrl}'");
+
                 if (request.HttpMethod == "POST")
                 {
                     using (StreamReader r = new StreamReader(request.InputStream))
                     {
-                        string query = (r.ReadToEnd());
-                        Console.WriteLine(r.ReadToEnd());
-                        Match m= Regex.Match(query, "/username=(.*)&password=(.*)/gm");
+                        string query = r.ReadToEnd();
+                        Match m = Regex.Match(query, "username=(.*)&password=(.*)&");
                         if (m.Success)
                         {
                             string username = m.Groups[1].Value;
                             string password = m.Groups[2].Value;
 
-                            if(username == "admin" && password == "pswd")
+                            string html = $"";
+                            
+                            if (username == "admin" && password == "steve")
                             {
-                                html = "Login Succeeded";
-                            }
-                            else
+                                html = "Login succeeded";
+                            } else
                             {
-                                html = "Login Failed";
+                                html = "Login failed";
                             }
-                            buffer = Encoding.UTF8.GetBytes(html);
+                            byte[] buffer = Encoding.UTF8.GetBytes(html);
                             response.ContentLength64 = buffer.Length;
                             response.OutputStream.Write(buffer, 0, buffer.Length);
                             response.OutputStream.Close();
+                            Console.WriteLine($"Attempting to log in with u:{username} and p:{password}");
                         }
-                        
+
                     }
                 }
-                
+                else
                 {
+
+                    string html = $"";
+                    byte[] buffer = Encoding.UTF8.GetBytes("");
+
                     switch (request.RawUrl)
                     {
                         case "/":
-                            //research
+                            buffer = File.ReadAllBytes("../../static/index.html");
                             response.ContentType = "text/html";
-                            buffer = File.ReadAllBytes("../../Static/index.html");
                             break;
                         default:
-                            string path = $"../../Static{request.RawUrl}";
+                            string path = "../../static" + request.RawUrl;
                             if (File.Exists(path))
                             {
-                                Path.GetExtension(path);
                                 buffer = File.ReadAllBytes(path);
                             }
                             else
                             {
                                 response.StatusCode = 404;
-                                buffer = Encoding.UTF8.GetBytes("Sorry File Not Found");
-                                Console.WriteLine($"Unkown URL: {request.RawUrl}");
+                                html = "Sorry - file not found";
+                                buffer = Encoding.UTF8.GetBytes(html);
+                                Console.WriteLine($"Unknown URL: {request.RawUrl}");
                             }
 
                             break;
-
                     }
 
-                    Console.WriteLine($"Sending {buffer.Length}");
+                    Console.WriteLine($"Sending: {buffer.Length} bytes");
                     response.ContentLength64 = buffer.Length;
                     response.OutputStream.Write(buffer, 0, buffer.Length);
                     response.OutputStream.Close();
-
                 }
             }
-                
-                
             server.Stop();
+
         }
     }
 }
